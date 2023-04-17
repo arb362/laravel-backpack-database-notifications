@@ -96,9 +96,10 @@ class NotificationCrudController extends CrudController
         $this->crud->addColumn([
             'name' => 'message',
             'label' => 'Message',
-            'type' => 'custom_html',
+            'type' => 'closure',
+            'escaped' => false,            
             'priority' => -1,
-            'value' => function ($entry) {
+            'function' => function ($entry) {
                 return '<div style="display:inline-block; max-width:100%; white-space: pre-wrap;">'.
                     ($entry->data->message_long ?? $entry->data->message ?? '-').
                     '</div>';
